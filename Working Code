@@ -1,0 +1,53 @@
+#INTRODUCTION
+x = 0
+total = 0
+print("Welcome to QuoteCalculator!\n")
+forward = "no"
+
+product_list = []
+price_list = []
+quantity_list =[]
+calculate_list = []
+
+
+#Read Inputs
+while (forward == "no"):
+  product = str(input("Name of product: "))
+
+  while (product.isalpha() == False):
+    print ("Not a valid string. Please enter a string.\n")
+    product = str(input("Name of product: "))
+
+  price = int(input("Price: "))
+  
+  quantity = int(input("Quantity: "))
+
+  calculate = price * quantity
+
+  product_list.append(product)
+  price_list.append(price)
+  quantity_list.append(quantity)
+  calculate_list.append(calculate)
+
+  forward = input("Enter 'yes' if you're done or 'no' to add another: ")
+
+  print("\n\n")
+    
+#Calculate
+
+while (x < len(product_list)):
+  print(str(product_list[x]) + "                          " + str(calculate_list[x]))
+  x+=1
+
+x = 0
+
+while (x < len(product_list)):
+  total += calculate_list[x]
+  x+=1
+
+print ("\n")
+print("--------------------------------")
+print ("Total:                        "   + str(total))
+
+
+#Spotify
