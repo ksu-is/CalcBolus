@@ -1,0 +1,82 @@
+#INTRODUCTION
+
+x = 0
+total = 0
+forward = "no"
+
+product = 0
+price = 0
+quantity = 0
+
+product_list = []
+price_list = []
+quantity_list =[]
+calculate_list = []
+
+from tkinter import *
+
+window = Tk()
+window.title("Quote Calculator")
+window.configure(background="black")
+  
+qc = Label (window, text="Quote Calculator", bg="black", fg="white", font="roman 120").grid(row=1, column=0, sticky=W)
+
+def kill():
+  window.destroy()
+  
+start = Button (window, text="START", font="roman 20", width=25, command=kill). grid(row=3, column=0, sticky=S)
+
+window.geometry("1120x600+400+200")
+window.mainloop()
+
+from tkinter import *
+
+def home():
+  window = Tk()
+  window.title("Quote Calculator")
+  window.configure(background="black")
+  Label (window, text="Name of Product: ", bg="black", fg="white", font="roman 40").grid(row=1, column=0, sticky=W)
+  product_entry = Entry(window, width=30, bg="white")
+  product_entry.grid(row=1, column=80, sticky=E)
+
+  Label (window, text="Price: ", bg="black", fg="white", font="roman 40").grid(row=41, column=0, sticky=W)
+  price_entry = Entry(window, width=30, bg="white")
+  price_entry.grid(row=41, column=80, sticky=E)
+
+  Label (window, text="Quantity: ", bg="black", fg="white", font="roman 40").grid(row=81, column=0, sticky=W)
+  quantity_entry = Entry(window, width=30, bg="white")
+  quantity_entry.grid(row=81, column=80, sticky=E)
+
+  Button(window, text="Submit", width=30).grid(row=120, column=80, sticky=E)
+
+def runningTotal():
+  window = Tk()
+  window.title("Quote Calculator")
+  window.configure(background="black")
+
+  name_of_user = quantity_entry.get()
+  string_to_display = "Running Total: " + name_of_user
+  LabelRun = Label(window)
+  LabelRun["text"] = string_to_display
+
+  Button(window, text="Add Another Product?", width=30, command=home).grid(row=120, column=80, sticky=E)
+
+window = Tk()
+window.title("Quote Calculator")
+window.configure(background="black")
+Label (window, text="Name of Product: ", bg="black", fg="white", font="roman 40").grid(row=1, column=0, sticky=W)
+product = StringVar()
+product_entry = Entry(window, textvariable=product, width=30, bg="white")
+product_entry.grid(row=1, column=80, sticky=E)
+
+Label (window, text="Price: ", bg="black", fg="white", font="roman 40").grid(row=41, column=0, sticky=W)
+price = DoubleVar()
+price_entry = Entry(window, textvariable=price, width=30, bg="white")
+price_entry.grid(row=41, column=80, sticky=E)
+
+Label (window, text="Quantity: ", bg="black", fg="white", font="roman 40").grid(row=81, column=0, sticky=W)
+quantity = IntVar()
+quantity_entry = Entry(window, textvariable=quantity, width=30, bg="white")
+quantity_entry.grid(row=81, column=80, sticky=E)
+
+Button(window, text="Submit", width=30,command=runningTotal).grid(row=120, column=80, sticky=E)
