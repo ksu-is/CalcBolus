@@ -1,5 +1,5 @@
 
-#introduce the program
+#introduce the CalcBolus program
 print("\nWelcome to CalcBolus! Please consult with your doctor before using this program.\n")
 
 #get user input for blood glucose correction factor and ask if default physical correction factors need to be changed. 
