@@ -6,7 +6,7 @@
 
 4: Begin coding by programming all print and input options pre-calculation-- DONE
 
-5: Initialize all necessary variable placeholders and code for string-to-float conversions
+5: Initialize all necessary variable placeholders and code for string-to-float conversions--DONE
 
 6: Create the first decision trees (for yes/no questions) and add a path to change related variables when necessary
 
