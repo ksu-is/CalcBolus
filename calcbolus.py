@@ -1,34 +1,43 @@
+#initialize variables
+lowfact = 0
+highfact = 0
 
 #introduce the program
 print("\nWelcome to CalcBolus! Please consult with your doctor before using this program.\n")
 
 #get user input for blood glucose correction factor and ask if default physical correction factors need to be changed. 
 print("Please input your blood glucose correction factor number as determined by your doctor. For example, if you divide your current number minus your target number by 35, please enter 35.")
-corfact = input("BG Correction Factor: ")
+corfact = int(input("BG Correction Factor: "))
 
-print("\nThe current default correction factor for hypoglycemia-causing events (like exercise) is 4/5, or .8 . Would you like to change this number?")
-changelow = input("Enter 'y' to change, or enter 'n' to keep: ")
-#((add if statement for lowfact and initialize lowfact))
+print("\nThe current default correction factor for hypoglycemia-causing events (like exercise) is .8 . Would you like to change this number?")
+while lowfact == 0:
+  changelow = input("Enter 'y' to change, or enter 'n' to keep: ")
+  if changelow.lower() == 'y':
+    lowfact = float(input("Enter your new correction factor for hypoglycemia-causing events as a decimal such as .5 or .92: "))
+  elif changelow.lower() == 'n':
+    lowfact = 0.8
+  else:
+    print("That is not a valid input. Please enter 'y' to change, or enter 'n' to keep.")
 
-print("\nThe current default correction factor for hyperglycemia-causing events like illness is 5/4, or 1.25 . Would you like to change this number?")
-changehigh = input("Enter 'y to change, or enter 'n' to keep: ")
-#((add if statement for highfact and initialize highfact))
+print("\nThe current default correction factor for hyperglycemia-causing events like illness is 1.25 . Would you like to change this number?")
+while highfact == 0:
+  changehigh = input("Enter 'y to change, or enter 'n' to keep: ")
+  if changehigh.lower() == 'y':
+    highfact = float(input("Enter your new correction factor for hyperglycemia-causing events as a decimal such as 1.35 or 1.1: "))
+  elif changehigh.lower() == 'n':
+    highfact = 1.25
+  else: 
+    print("That is not a valid input. Please enter 'y' to change, or enter 'n' to keep.")
+
 
 #get user input on current blood glucose, carb intake, and phyiscal factors
-bg = input("\nPlease enter your latest blood glucose reading: ")
-carbs = input("Please enter your carbohydrate count for your meal: ")
+bg = int(input("\nPlease enter your latest blood glucose reading: "))
+carbs = int(input("Please enter your carbohydrate count for your meal: "))
 print("\nFor the following questions, please enter 'y' for yes, or 'n' for no.")
 exercise = input("Will you be doing, or have you done, any strenuous or prolonged phyiscal exercise today?: ")
 alcintake = input("Will you have, or have you had, more than two low-carb alcoholic bevarages today?: ")
 illness = input("Are you currently sick with a cold, the flu, or another phyiscla illness that cause hyperglycemic trends?: ")
 meds = input("Are you currently taking any medications, like corticosteroids or blood pressure medication, that cause hyperglycemic trends?: ")
-
-
-
-product_list = []
-price_list = []
-quantity_list =[]
-calculate_list = []
 
 
 #Read Inputs
@@ -45,10 +54,7 @@ while (forward == "no"):
 
   calculate = price * quantity
 
-  product_list.append(product)
-  price_list.append(price)
-  quantity_list.append(quantity)
-  calculate_list.append(calculate)
+
 
   forward = input("Enter 'yes' if you're done or 'no' to add another: ")
 
@@ -56,15 +62,10 @@ while (forward == "no"):
     
 #Calculate
 
-while (x < len(product_list)):
-  print(str(product_list[x]) + "                          " + str(calculate_list[x]))
-  x+=1
-
+while 
 x = 0
 
-while (x < len(product_list)):
-  total += calculate_list[x]
-  x+=1
+while 
 
 print ("\n")
 print("--------------------------------")
