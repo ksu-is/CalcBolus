@@ -1,19 +1,40 @@
-#initialize correction factor variables
-lowfact = 0
-highfact = 0
-corfactnum = 0
+#initialize correction factor, target BG, and ICR variables
+cfnum = 0
+targetnum = 0
+icrnum = 0
 
 #introduce the CalcBolus program
 print("\nWelcome to CalcBolus! Please consult with your doctor before using this program.\n")
 
-#get user input for blood glucose correction factor and ask if default physical correction factors need to be changed. 
+#get user input for blood glucose correction factor, target blood glucose, and insulin to carb ratio (ICR) 
 print("Please input your blood glucose correction factor number as determined by your doctor. For example, if you divide your current number minus your target number by 35, please enter 35.")
-while corfactnum == 0:
+while cfnum == 0:
   corfact = input("BG Correction Factor: ")
   if corfact.isnumeric():
-    corfactnum = int(corfact)
+    cfnum = int(corfact)
   else:
     print("Invalid input. Please enter a numeric value.")
+
+print("\nPlease input your target blood glucose number. ")
+while targetnum == 0:
+  target = input("Target blood glucose: ")
+  if target.isnumeric():
+    targetnum = int(target)
+  else:
+    print("Invalid input. Please enter a numeric value.")
+
+print("\n Please enter your insulin to carb ratio. For example, if you take one unit for every 5 carbs, please enter 5.")
+while icrnum == 0:
+  icr = input("insulin to carb ratio: ")
+  if icr.isnumeric():
+    icrnum = int(icr)
+  else:
+    print("Inalid input. Please enter a numeric value.")
+
+
+# Initialize PS factors and ask if default physical correction factors need to be changed
+lowfact = 0
+highfact = 0
 
 print("\nThe current default correction factor for hypoglycemia-causing events (like exercise) is .8 . Would you like to change this number?")
 while lowfact == 0:
@@ -37,7 +58,7 @@ while highfact == 0:
 
 #initialize other variables for second round of user input
 bgnum = 0
-carbsnum = 0
+chonum = 0
 exercise = 0 
 alcintake = 0
 illness = 0
@@ -51,10 +72,10 @@ while bgnum == 0:
   else:
      print("Invalid input. Please enter a numeric value.")
 
-while carbsnum = 0:
-  carbs = input("\nPlease enter the carbohydrate count for your meal: ")
-  if carbs.isnumeric():
-    carbsnum = int(carbs)
+while chonum == 0:
+  cho = input("\nPlease enter the carbohydrate count for your meal: ")
+  if cho.isnumeric():
+    chonum = int(cho)
   else:
      print("Invalid input. Please enter a numeric value.")
 
@@ -79,7 +100,7 @@ while alcintake == 0:
 
 while illness == 0: 
   illness = input("\nAre you currently sick with a cold, the flu, or another phyiscla illness that cause hyperglycemic trends?: ")
-   if illness.lower() == 'y':
+  if illness.lower() == 'y':
     illness = 1
   elif illness.lower() == 'n':
     illness = 2
@@ -88,41 +109,27 @@ while illness == 0:
 
 while meds == 0:
   meds = input("\nAre you currently taking any medications, like corticosteroids or blood pressure medication, that cause hyperglycemic trends?: ")
-   if meds.lower() == 'y':
+  if meds.lower() == 'y':
     meds = 1
   elif meds.lower() == 'n':
     meds = 2
   else:
     print("Invalid input. Please enter either 'y' or 'n'.")
 
+#Calculate base insulin dosage, no physical factors
+bolus = 0
+while bolus == 0:
+  if targetnum >= bgnum:
+    bolus = (chonum / icrnum)
+    print("You should take", bolus, "units of insulin within the next 15 minutes.")
+  else:
+    bolus = (chonum / icrnum) + ((bgnum - targetnum)/ cfnum)
+    print("You should take", bolus, "units of insulin within the next 15 minutes.")
+
 
 #Calculate insulin doasge
-while (forward == "no"):
-  product = str(input("Name of product: "))
-
-  while (product.isalpha() == False):
-    print ("Not a valid string. Please enter a string.\n")
-    product = str(input("Name of product: "))
-
-  price = int(input("Price: "))
-  
-  quantity = int(input("Quantity: "))
-
-  calculate = price * quantity
 
 
-
-  forward = input("Enter 'yes' if you're done or 'no' to add another: ")
-
-  print("\n\n")
-    
-#Calculate
-
-#while 
-x = 0
-
-#while 
-
-print ("\n")
-print("--------------------------------")
-print ("Total:                        "   + str(total))
+#print ("\n")
+#print("--------------------------------")
+#print ("Total:                        "   + str(total))
