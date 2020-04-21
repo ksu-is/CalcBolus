@@ -116,15 +116,39 @@ while meds == 0:
   else:
     print("Invalid input. Please enter either 'y' or 'n'.")
 
-#Calculate base insulin dosage, no physical factors
+#Calculate base insulin dosage, with and without physical factors
 bolus = 0
 while bolus == 0:
-  if targetnum >= bgnum:
-    bolus = (chonum / icrnum)
-    print("You should take", bolus, "units of insulin within the next 15 minutes.")
-  else:
-    bolus = (chonum / icrnum) + ((bgnum - targetnum)/ cfnum)
-    print("You should take", bolus, "units of insulin within the next 15 minutes.")
+  if exercise and alcintake and illness and meds == 2:
+    if targetnum >= bgnum:
+      bolus = (chonum / icrnum)
+      print("You should take", bolus, "units of insulin within the next 15 minutes.")
+    else:
+      bolus = (chonum / icrnum) + ((bgnum - targetnum)/ cfnum)
+      print("You should take", bolus, "units of insulin within the next 15 minutes.")
+  elif exercise or alcintake ==1:
+    if targetnum >= bgnum:
+      if illness or meds == 1:
+        bolus = (chonum / icrnum) * (highfact * lowfact)
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+      else:
+        bolus = (chonum / icrnum) * lowfact
+        print("You should take", bolus, "units of insulin in the next 15 minutes.")
+    else:
+      if illness or meds == 1:
+        bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * (highfact * lowfact)
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+      else:
+        bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * lowfact
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+  
+
+      
+
+    
+
+      
+
 
 
 #Calculate insulin doasge
