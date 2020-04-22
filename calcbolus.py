@@ -141,7 +141,24 @@ while bolus == 0:
       else:
         bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * lowfact
         print("You should take", bolus , "units of insulin within the next 15 minutes.")
-  
+  elif illness or meds == 1:
+    if targetnum >= bgnum:
+      if exercise or alcintake == 1:
+        bolus = (chonum / icrnum) * (highfact * lowfact)
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+      else:
+        bolus = (chonum / icrnum) * highfact
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+    else:
+      if exercise or alcintake == 1:
+        bolus =  ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * (highfact * lowfact)
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+      else:
+        bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * highfact
+        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+  else:
+    print("Sorry, the program cannot read your output. Please restart the program and try again.")
+
 
       
 
