@@ -20,8 +20,8 @@
 
 11: Add in colorama module and add text colors (Sprint 3)--DONE
 
-12: Finish adding text colors, fix any remaining code errors (Sprint 3)
+12: Finish adding text colors, fix any remaining code errors (Sprint 3)--DONE
 
-13: Final code test (test at least 3 different scenarios) (Sprint 3)
+13: Final code test (test at least 3 different scenarios) (Sprint 3)--DONE
 
 
