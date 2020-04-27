@@ -18,7 +18,7 @@ while cfnum == 0:
   if corfact.isnumeric():
     cfnum = int(corfact)
   else:
-    print("Invalid input. Please enter a numeric value.")
+    print(Fore.RED + "Invalid input. Please enter a numeric value.")
 
 print(Fore.YELLOW + "\nPlease input your target blood glucose number. ")
 while targetnum == 0:
@@ -26,7 +26,7 @@ while targetnum == 0:
   if target.isnumeric():
     targetnum = int(target)
   else:
-    print("Invalid input. Please enter a numeric value.")
+    print(Fore.RED + "Invalid input. Please enter a numeric value.")
 
 print(Fore.YELLOW + "\n Please enter your insulin to carb ratio. For example, if you take one unit for every 5 carbs, please enter 5.")
 while icrnum == 0:
@@ -34,7 +34,7 @@ while icrnum == 0:
   if icr.isnumeric():
     icrnum = int(icr)
   else:
-    print("Inalid input. Please enter a numeric value.")
+    print(Fore.RED + "Inalid input. Please enter a numeric value.")
 
 
 # Initialize PS factors and ask if default physical correction factors need to be changed
@@ -49,7 +49,7 @@ while lowfact == 0:
   elif changelow.lower() == 'n':
     lowfact = 0.8
   else:
-    print("Invalid input. Please enter 'y' to change, or enter 'n' to keep.")
+    print(Fore.RED + "Invalid input. Please enter 'y' to change, or enter 'n' to keep.")
 
 print(Fore.YELLOW + "\nThe current default correction factor for hyperglycemia-causing events like illness is 1.25 . Would you like to change this number?")
 while highfact == 0:
@@ -59,7 +59,7 @@ while highfact == 0:
   elif changehigh.lower() == 'n':
     highfact = 1.25
   else: 
-    print("Invalid input. Please enter 'y' to change, or enter 'n' to keep.")
+    print(Fore.RED + "Invalid input. Please enter 'y' to change, or enter 'n' to keep.")
 
 #initialize other variables for second round of user input
 bgnum = 0
@@ -75,14 +75,14 @@ while bgnum == 0:
   if bg.isnumeric():
     bgnum = int(bg) 
   else:
-     print("Invalid input. Please enter a numeric value.")
+     print(Fore.RED + "Invalid input. Please enter a numeric value.")
 
 while chonum == 0:
   cho = input(Fore.LIGHTCYAN_EX + "\nPlease enter the carbohydrate count for your meal: ")
   if cho.isnumeric():
     chonum = int(cho)
   else:
-     print("Invalid input. Please enter a numeric value.")
+     print(Fore.RED + "Invalid input. Please enter a numeric value.")
 
 print(Fore.YELLOW + "\nFor the following questions, please enter 'y' for yes, or 'n' for no.")
 while exercise == 0:
@@ -92,7 +92,7 @@ while exercise == 0:
   elif exercise.lower() == 'n':
     exercise = 2
   else:
-    print("Invalid input. Please enter either 'y' or 'n'.")
+    print(Fore.RED + "Invalid input. Please enter either 'y' or 'n'.")
 
 while alcintake == 0:
   alcintake = input(Fore.LIGHTCYAN_EX + "\nWill you have, or have you had, more than two low-carb alcoholic bevarages today?: ")
@@ -101,7 +101,7 @@ while alcintake == 0:
   elif alcintake.lower() == 'n':
     alcintake = 2
   else:
-    print("Invalid input. Please enter either 'y' or 'n'.")
+    print(Fore.RED + "Invalid input. Please enter either 'y' or 'n'.")
 
 while illness == 0: 
   illness = input(Fore.LIGHTCYAN_EX +  "\nAre you currently sick with a cold, the flu, or another phyiscla illness that cause hyperglycemic trends?: ")
@@ -110,7 +110,7 @@ while illness == 0:
   elif illness.lower() == 'n':
     illness = 2
   else:
-    print(Fore.LIGHTCYAN_EX + "Invalid input. Please enter either 'y' or 'n'.")
+    print(Fore.RED + "Invalid input. Please enter either 'y' or 'n'.")
 
 while meds == 0:
   meds = input(Fore.LIGHTCYAN_EX + "\nAre you currently taking any medications, like corticosteroids or blood pressure medication, that cause hyperglycemic trends?: ")
@@ -119,7 +119,7 @@ while meds == 0:
   elif meds.lower() == 'n':
     meds = 2
   else:
-    print("Invalid input. Please enter either 'y' or 'n'.")
+    print(Fore.RED + "Invalid input. Please enter either 'y' or 'n'.")
 
 #Calculate base insulin dosage, with and without physical factors
 bolus = 0
@@ -127,42 +127,43 @@ while bolus == 0:
   if exercise and alcintake and illness and meds == 2:
     if targetnum >= bgnum:
       bolus = (chonum / icrnum)
-      print("You should take", bolus, "units of insulin within the next 15 minutes.")
+      print(Fore.BLACK + Back.GREEN + "You should take", bolus, "units of insulin within the next 15 minutes.")
     else:
       bolus = (chonum / icrnum) + ((bgnum - targetnum)/ cfnum)
-      print("You should take", bolus, "units of insulin within the next 15 minutes.")
+      print(Fore.BLACK + Back.GREEN + "You should take", bolus, "units of insulin within the next 15 minutes.")
   elif exercise or alcintake ==1:
     if targetnum >= bgnum:
       if illness or meds == 1:
         bolus = (chonum / icrnum) * (highfact * lowfact)
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
       else:
         bolus = (chonum / icrnum) * lowfact
-        print("You should take", bolus, "units of insulin in the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus, "units of insulin in the next 15 minutes.")
     else:
       if illness or meds == 1:
         bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * (highfact * lowfact)
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
       else:
         bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * lowfact
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
   elif illness or meds == 1:
     if targetnum >= bgnum:
       if exercise or alcintake == 1:
         bolus = (chonum / icrnum) * (highfact * lowfact)
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
       else:
         bolus = (chonum / icrnum) * highfact
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
     else:
       if exercise or alcintake == 1:
         bolus =  ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * (highfact * lowfact)
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
       else:
         bolus = ((chonum / icrnum) + ((bgnum - targetnum)/ cfnum))  * highfact
-        print("You should take", bolus , "units of insulin within the next 15 minutes.")
+        print(Fore.BLACK + Back.GREEN + "You should take", bolus , "units of insulin within the next 15 minutes.")
   else:
-    print("Sorry, the program cannot read your output. Please restart the program and try again.")
+    print(Fore.RED + "Sorry, the program cannot read your output. Please restart the program and try again.")
+print(Style.RESET_ALL)
 
 
 
